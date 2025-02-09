@@ -1,17 +1,27 @@
 {
   "type": "bubble",
-  "size": "kilo",
+  "size": "mega",
   "body": {
     "type": "box",
     "layout": "vertical",
     "contents": [
       {
-        "type": "text",
-        "text": "Welcome to the team!",
-        "color": "#222222",
-        "weight": "bold",
-        "size": "md",
-        "align": "center"
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "NezuWorksBOT",
+            "size": "lg",
+            "color": "#00c73c",
+            "weight": "bold",
+            "align": "center"
+          }
+        ],
+        "backgroundColor": "#ffffff",
+        "borderWidth": "bold",
+        "cornerRadius": "xxl",
+        "borderColor": "#ffffff"
       },
       {
         "type": "box",
@@ -19,52 +29,148 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://i.ibb.co/26nhYVF/06-thomas-business-hr-staff.png",
-            "size": "sm",
-            "aspectMode": "cover",
-            "align": "center"
+            "url": "https://storage.worksmobile.com/k/wphotocontact/t/jp1.0/line_yamt5t/img.w_230000051339205_1739028837961/f210_210",
+            "size": "full"
           }
         ],
-        "margin": "xxl",
-        "cornerRadius": "50px",
-        "borderWidth": "1px",
-        "borderColor": "#22222220",
-        "height": "60px",
-        "width": "60px",
-        "offsetStart": "85px",
-        "offsetEnd": "85px"
-      },
-      {
-        "type": "text",
-        "text": "Kyle Baron",
-        "weight": "bold",
-        "size": "lg",
-        "margin": "md",
-        "align": "center"
+        "width": "120px",
+        "height": "120px",
+        "cornerRadius": "180px",
+        "borderWidth": "bold",
+        "borderColor": "#22222210",
+        "offsetStart": "75px",
+        "offsetEnd": "75px"
       },
       {
         "type": "box",
-        "layout": "baseline",
+        "layout": "vertical",
         "contents": [
           {
             "type": "text",
-            "text": "kylebaron@designer.com",
+            "text": "ねずみにうむ",
+            "weight": "bold",
+            "size": "xl",
+            "align": "center"
+          },
+          {
+            "type": "text",
+            "text": "Python Developer🐍",
             "size": "sm",
-            "color": "#666666",
-            "wrap": true,
             "align": "center"
           }
-        ]
+        ],
+        "margin": "xl",
+        "borderColor": "#afeeee",
+        "backgroundColor": "#afeeee",
+        "borderWidth": "bold",
+        "cornerRadius": "xxl"
       },
       {
-        "type": "text",
-        "text": "Please edit your detail information.",
-        "color": "#aaaaaa",
-        "size": "sm",
-        "wrap": true,
-        "align": "center",
-        "margin": "lg"
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ID",
+                "size": "sm",
+                "color": "#858f89",
+                "flex": 3,
+                "margin": "md"
+              },
+              {
+                "type": "text",
+                "text": "Click!!",
+                "size": "sm",
+                "margin": "md",
+                "flex": 5,
+                "action": {
+                  "type": "message",
+                  "label": "Click",
+                  "text": "913000043047576"
+                },
+                "color": "#008000",
+                "weight": "bold"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Photo URL",
+                "size": "sm",
+                "color": "#858f89",
+                "flex": 3,
+                "margin": "md"
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "margin": "md",
+                "flex": 5,
+                "action": {
+                  "type": "uri",
+                  "label": "Click",
+                  "uri": "https://storage.worksmobile.com/k/wphotocontact/t/jp1.0/line_yamt5t/img.w_230000051339205_1739028837961/f210_210"
+                },
+                "text": "Click!!",
+                "color": "#008000",
+                "weight": "bold"
+              }
+            ],
+            "margin": "sm"
+          }
+        ],
+        "margin": "xxl",
+        "width": "260px",
+        "alignItems": "center",
+        "paddingAll": "6px",
+        "backgroundColor": "#add8e6",
+        "borderWidth": "bold",
+        "cornerRadius": "xxl"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "Github",
+              "uri": "https://github.com/nezumi0627"
+            },
+            "style": "link"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "Source Code",
+              "uri": "https://github.com/nezumi0627/nezu-works-bot"
+            },
+            "style": "link"
+          }
+        ]
       }
-    ]
+    ],
+    "borderWidth": "bold",
+    "borderColor": "#7fffd4",
+    "cornerRadius": "xxl",
+    "separator": true,
+    "separatorColor": "#2e8b57"
+  },
+  "styles": {
+    "body": {
+      "backgroundColor": "#3cb371",
+      "separatorColor": "#2e8b57",
+      "separator": true
+    }
   }
 }
