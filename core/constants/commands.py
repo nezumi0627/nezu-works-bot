@@ -3,7 +3,7 @@
 from typing import Final
 
 # コマンドプレフィックス
-COMMAND_PREFIX: Final[str] = "!"
+COMMAND_PREFIX: Final[str] = "!"  # TODO: PREFIXの変更機能を実装する
 
 # コマンド一覧
 HELP_COMMAND: Final[str] = f"{COMMAND_PREFIX}help"
