@@ -36,6 +36,7 @@ class PayloadValidator:
         NotificationType.NOTIFICATION_MESSAGE,  # テキストメッセージ
         NotificationType.NOTIFICATION_STICKER,  # スタンプ
         NotificationType.NOTIFICATION_LOCATION,  # 位置情報
+        41,  # 不明な通知タイプを追加
     }
 
     VALID_PAYLOAD_TYPES = {
@@ -55,9 +56,16 @@ class PayloadValidator:
             bool: 通知タイプが有効な場合はTrue
         """
         try:
+            # 文字列型の通知タイプを整数に変換
             type_value = int(notification_type)
-            return NotificationType(type_value) in cls.VALID_NOTIFICATION_TYPES
+
+            # 既知の通知タイプまたは許可された不明な通知タイプを確認
+            return (
+                type_value in cls.VALID_NOTIFICATION_TYPES
+                or type_value == 41  # 不明な通知タイプを明示的に許可
+            )
         except (ValueError, TypeError):
+            # 変換できない場合は無効
             return False
 
     @classmethod
@@ -117,9 +125,7 @@ def receive_publish_packet(works: LineWorks, packet: MQTTPacket) -> None:
         if not PayloadValidator.is_valid_message_payload(payload):
             notification_type = getattr(payload, "notification_type", None)
             if notification_type:
-                logger.log_info(
-                    f"Skipping notification type: {notification_type}"
-                )
+                logger.log_debug(f"処理する通知タイプ: {notification_type}")
             else:
                 logger.warning(f"Invalid payload type: {type(payload)}")
             return

@@ -41,6 +41,14 @@ class RichLogger:
         """
         self.logger.info(message)
 
+    def log_debug(self, message: str) -> None:
+        """デバッグメッセージを出力.
+
+        Args:
+            message: 出力するメッセージ
+        """
+        self.logger.debug(message)
+
     def log_login(self, works_id: str) -> None:
         """ログイン情報を表示.
 

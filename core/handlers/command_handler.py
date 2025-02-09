@@ -14,6 +14,9 @@ from core.constants.commands import (
 )
 from core.utils import load_flex_message
 
+# データ取得状態を管理する辞書
+DATA_RETRIEVAL_STATE: dict[str, dict[str, str | None]] = {}
+
 
 class CommandHandler:
     """コマンド処理を管理するクラス."""
@@ -82,11 +85,9 @@ class CommandHandler:
         flex_message = load_flex_message("sample.json")
         works.send_flex_message(channel_no, flex_content=flex_message)
 
+    @classmethod
     def get_data(
-        self,
-        works: LineWorks,
-        channel_no: str,
-        payload: MessagePayload,
+        cls, works: LineWorks, channel_no: str, payload: MessagePayload
     ) -> None:
         """データ取得モードを開始.
 
@@ -95,12 +96,15 @@ class CommandHandler:
             channel_no: チャンネル番号
             payload: メッセージペイロード
         """
-        self.data_retrieval_state[channel_no] = {
+        global DATA_RETRIEVAL_STATE
+
+        DATA_RETRIEVAL_STATE[channel_no] = {
             "user_no": str(payload.from_user_no),
             "waiting_for_data": True,
             "data": None,
         }
         works.send_text_message(
             channel_no,
-            "データを取得したいメッセージやコンテンツを送信してください。",
+            "データの取得を開始しました。\n"
+            "データの取得を中止する場合は「キャンセル」と入力してください。",
         )

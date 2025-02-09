@@ -11,6 +11,7 @@ from .commands import (
 
 __all__ = [
     "COMMAND_PREFIX",
+    "ALL_COMMANDS",
     "HELP_COMMAND",
     "TEST_COMMAND",
     "FLEX_COMMAND",

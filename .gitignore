@@ -31,7 +31,6 @@ env.bak/
 venv.bak/
 
 # IDE関連
-.vscode/
 .idea/
 *.swp
 *.swo
