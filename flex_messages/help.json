@@ -1,0 +1,63 @@
+{
+  "type": "bubble",
+  "size": "kilo",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "contents": [
+      {
+        "type": "text",
+        "text": "コマンド一覧",
+        "weight": "bold",
+        "size": "lg",
+        "align": "center",
+        "color": "#6C5CE7"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "message",
+          "label": "!help - ヘルプを表示",
+          "text": "!help"
+        },
+        "style": "secondary",
+        "color": "#6C5CE7",
+        "height": "sm"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "message",
+          "label": "!test - 動作確認",
+          "text": "!test"
+        },
+        "style": "secondary",
+        "color": "#6C5CE7",
+        "height": "sm"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "message",
+          "label": "!flex - サンプル表示",
+          "text": "!flex"
+        },
+        "style": "secondary",
+        "color": "#6C5CE7",
+        "height": "sm"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "message",
+          "label": "!getdata - データ取得",
+          "text": "!getdata"
+        },
+        "style": "secondary",
+        "color": "#6C5CE7",
+        "height": "sm"
+      }
+    ]
+  }
+}

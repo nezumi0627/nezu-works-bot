@@ -1,0 +1,70 @@
+{
+  "type": "bubble",
+  "size": "kilo",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Welcome to the team!",
+        "color": "#222222",
+        "weight": "bold",
+        "size": "md",
+        "align": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://i.ibb.co/26nhYVF/06-thomas-business-hr-staff.png",
+            "size": "sm",
+            "aspectMode": "cover",
+            "align": "center"
+          }
+        ],
+        "margin": "xxl",
+        "cornerRadius": "50px",
+        "borderWidth": "1px",
+        "borderColor": "#22222220",
+        "height": "60px",
+        "width": "60px",
+        "offsetStart": "85px",
+        "offsetEnd": "85px"
+      },
+      {
+        "type": "text",
+        "text": "Kyle Baron",
+        "weight": "bold",
+        "size": "lg",
+        "margin": "md",
+        "align": "center"
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "text",
+            "text": "kylebaron@designer.com",
+            "size": "sm",
+            "color": "#666666",
+            "wrap": true,
+            "align": "center"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "text": "Please edit your detail information.",
+        "color": "#aaaaaa",
+        "size": "sm",
+        "wrap": true,
+        "align": "center",
+        "margin": "lg"
+      }
+    ]
+  }
+}
