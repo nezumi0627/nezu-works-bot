@@ -1,11 +1,12 @@
 #!/bin/sh
 
+set -e
+
 echo "🔍 Running pre-push checks..."
 
 # コミットメッセージの@pre-pushチェック
 echo "📝 Checking @pre-push tag..."
-commit_message=$(git log -1 --pretty=%B)
-if ! echo "$commit_message" | grep -q "@pre-push"; then
+if ! git log -1 --pretty=%B | grep -q "@pre-push"; then
     echo "❌ Error: Commit message must include @pre-push tag"
     exit 1
 fi

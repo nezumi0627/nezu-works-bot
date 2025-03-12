@@ -28,10 +28,51 @@ allow-direct-references = true
 packages = ["src/nezu_works_bot"]
 
 [tool.mypy]
-# your existing mypy configuration
+allow_redefinition = true
+allow_untyped_globals = false
+check_untyped_defs = true
+color_output = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = false
+disallow_untyped_calls = false
+disallow_untyped_decorators = false
+disallow_untyped_defs = true
+error_summary = true
+ignore_missing_imports = true
+implicit_reexport = true
+namespace_packages = true
+no_implicit_optional = true
+pretty = true
+show_column_numbers = true
+show_error_codes = true
+show_error_context = true
+show_traceback = true
+strict = true
+warn_no_return = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = false
 
 [tool.ruff]
-# your existing ruff configuration
+line-length = 88
+indent-width = 4
+lint.fixable = ["ALL"]
+lint.unfixable = []
+lint.select = [
+    "E",   # Pyflakes
+    "F",   # Pycodestyle
+    "C90", # mccabe
+    "N",   # PEP8命名規則
+    "B",   # Bugbear
+    "I",   # isort
+    "S",   # flake8-bandit
+    "RET", # flake8-return
+    "SIM", # flake8-simplify
+    "T20", # flake8-print
+]
+lint.ignore = ["E203"]
 
 [tool.rye.scripts]
 lint = { chain = ["lint:ruff", "lint:ruff_format", "lint:mypy"] }
@@ -48,3 +89,8 @@ test = { cmd = "pytest -v ./tests --cov=./src --cov-report term-missing --durati
 # GitHub commit style lint test
 lint_github = { chain = ["lint_github:ruff", "lint:ruff_format", "lint:mypy"] }
 "lint_github:ruff" = "ruff check ./ --diff --output-format=github"
+
+[tool.pytest.ini_options]
+pythonpath = "src"                    # src フォルダをモジュールパスに追加
+testpaths = ["tests"]
+addopts = ["--import-mode=importlib"]
