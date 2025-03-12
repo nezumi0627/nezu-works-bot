@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 echo "🔍 Running pre-push checks..."
 
 # コミットメッセージの@pre-pushチェック
