@@ -14,6 +14,4 @@ def test_hello(input_: str | None) -> None:
         "Hello from nezu-works-bot! "
         "I'm a bot that can be used to automate tasks on GitHub."
     )
-    assert hello(input_) == expected, (  # noqa: S101
-        f"Expected {expected!r} but got {hello(input_)!r}"
-    )
+    assert hello(input_) == expected, f"Expected {expected!r} but got {hello(input_)!r}"  # noqa: S101

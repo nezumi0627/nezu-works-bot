@@ -22,4 +22,5 @@ repos:
         exclude: ^tests/|^any-path/  # mypyの除外ディレクトリ
         additional_dependencies:
           - pydantic
-          - types-PyYAML==6.0.7
+          - types-PyYAML==6.0.
+
