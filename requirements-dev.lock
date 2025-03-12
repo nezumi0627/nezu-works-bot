@@ -16,23 +16,46 @@ certifi==2025.1.31
     # via requests
 charset-normalizer==3.4.1
     # via requests
+colorama==0.4.6
+    # via pytest
+coverage==7.6.12
+    # via pytest-cov
 idna==3.10
     # via requests
+iniconfig==2.0.0
+    # via pytest
 line-works-sdk==3.4
     # via nezu-works-bot
+mypy==1.15.0
+    # via nezu-works-bot
+mypy-extensions==1.0.0
+    # via mypy
+numpy==2.2.3
+packaging==24.2
+    # via pytest
+pluggy==1.5.0
+    # via pytest
 pydantic==2.10.6
     # via line-works-sdk
 pydantic-core==2.27.2
     # via line-works-sdk
     # via pydantic
+pytest==8.3.5
+    # via nezu-works-bot
+    # via pytest-cov
+pytest-cov==6.0.0
+    # via nezu-works-bot
 python-dateutil==2.9.0.post0
     # via line-works-sdk
 requests==2.32.3
     # via line-works-sdk
+ruff==0.9.10
+    # via nezu-works-bot
 six==1.17.0
     # via python-dateutil
 typing-extensions==4.12.2
     # via line-works-sdk
+    # via mypy
     # via pydantic
     # via pydantic-core
 urllib3==2.3.0

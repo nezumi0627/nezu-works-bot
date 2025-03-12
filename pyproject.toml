@@ -3,7 +3,13 @@ name = "nezu-works-bot"
 version = "1.0.0"
 description = "line-works-sdkを使用した便利な多機能BOT"
 authors = [{ name = "ねずみにうむ", email = "nezumi.dev.0627@gmail.com" }]
-dependencies = ["line-works-sdk>=3.4"]
+dependencies = [
+    "line-works-sdk>=3.4",
+    "ruff>=0.9.10",
+    "mypy>=1.15.0",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.0.0",
+]
 readme = "README.md"
 requires-python = ">= 3.8"
 
@@ -13,7 +19,7 @@ build-backend = "hatchling.build"
 
 [tool.rye]
 managed = true
-dev-dependencies = []
+dev-dependencies = ["numpy>=2.2.3"]
 
 [tool.hatch.metadata]
 allow-direct-references = true
@@ -22,8 +28,32 @@ allow-direct-references = true
 packages = ["src/nezu_works_bot"]
 
 [tool.mypy]
-plugins = ["mypy_types"]
-
+allow_redefinition = true
+allow_untyped_globals = false
+check_untyped_defs = true
+color_output = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = false
+disallow_untyped_calls = false
+disallow_untyped_decorators = false
+disallow_untyped_defs = true
+error_summary = true
+ignore_missing_imports = true
+implicit_reexport = true
+namespace_packages = true
+no_implicit_optional = true
+pretty = true
+show_column_numbers = true
+show_error_codes = true
+show_error_context = true
+show_traceback = true
+strict = true
+warn_no_return = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = false
 [tool.ruff]
 line-length = 79 # PEP 8推奨の行長
 indent-width = 4 # インデント幅
@@ -43,3 +73,18 @@ lint.select = [
 ]
 
 lint.ignore = ["E203"] # 特定の警告を無視
+
+[tool.rye.scripts]
+lint = { chain = ["lint:ruff", "lint:ruff_format", "lint:mypy"] }
+"lint:ruff" = "ruff check ./ --diff"
+"lint:ruff_format" = "ruff format --check --diff"
+"lint:mypy" = "mypy ./ --explicit-package-bases"
+
+format = { chain = ["format:ruff", "format:ruff_check"] }
+"format:ruff" = "ruff format ./"
+"format:ruff_check" = "ruff check ./ --fix"
+
+test = { cmd = "pytest -v ./tests --cov=./src --cov-report term-missing --durations=5" }
+
+lint_github = { chain = ["lint_github:ruff", "lint:ruff_format", "lint:mypy"] }
+"lint_github:ruff" = "ruff check ./ --diff --output-format=github"
