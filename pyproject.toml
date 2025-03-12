@@ -1,11 +1,9 @@
 [project]
 name = "nezu-works-bot"
-version = "0.1.0"
-description = "Add your description here"
-authors = [
-    { name = "ねずみにうむ", email = "nezumi.dev.0627@gmail.com" }
-]
-dependencies = []
+version = "1.0.0"
+description = "line-works-sdkを使用した便利な多機能BOT"
+authors = [{ name = "ねずみにうむ", email = "nezumi.dev.0627@gmail.com" }]
+dependencies = ["line-works-sdk>=3.4"]
 readme = "README.md"
 requires-python = ">= 3.8"
 
@@ -22,3 +20,26 @@ allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/nezu_works_bot"]
+
+[tool.mypy]
+plugins = ["mypy_types"]
+
+[tool.ruff]
+line-length = 79 # PEP 8推奨の行長
+indent-width = 4 # インデント幅
+lint.fixable = ["ALL"] # 自動修正可能なルール
+lint.unfixable = [] # 修正しないルール（空にすればすべて修正可能）
+lint.select = [
+    "E",   # Pyflakes（エラー）
+    "F",   # Pycodestyle（フォーマット）
+    "C90", # mccabe（循環的複雑度）
+    "N",   # PEP8命名規則
+    "B",   # Bugbear（よりパイソニックなコード）
+    "I",   # isort（インポートの整理）
+    "S",   # flake8-bandit（セキュリティ）
+    "RET", # flake8-return（return文の一貫性）
+    "SIM", # flake8-simplify（コード簡素化）
+    "T20", # flake8-print（print文検出）
+]
+
+lint.ignore = ["E203"] # 特定の警告を無視
