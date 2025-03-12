@@ -19,7 +19,11 @@ build-backend = "hatchling.build"
 
 [tool.rye]
 managed = true
-dev-dependencies = ["numpy>=2.2.3"]
+dev-dependencies = [
+    "numpy>=2.2.3",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.0.0",
+]
 
 [tool.hatch.metadata]
 allow-direct-references = true
@@ -54,25 +58,25 @@ warn_return_any = true
 warn_unreachable = true
 warn_unused_configs = true
 warn_unused_ignores = false
-[tool.ruff]
-line-length = 79 # PEP 8推奨の行長
-indent-width = 4 # インデント幅
-lint.fixable = ["ALL"] # 自動修正可能なルール
-lint.unfixable = [] # 修正しないルール（空にすればすべて修正可能）
-lint.select = [
-    "E",   # Pyflakes（エラー）
-    "F",   # Pycodestyle（フォーマット）
-    "C90", # mccabe（循環的複雑度）
-    "N",   # PEP8命名規則
-    "B",   # Bugbear（よりパイソニックなコード）
-    "I",   # isort（インポートの整理）
-    "S",   # flake8-bandit（セキュリティ）
-    "RET", # flake8-return（return文の一貫性）
-    "SIM", # flake8-simplify（コード簡素化）
-    "T20", # flake8-print（print文検出）
-]
 
-lint.ignore = ["E203"] # 特定の警告を無視
+[tool.ruff]
+line-length = 79
+indent-width = 4
+lint.fixable = ["ALL"]
+lint.unfixable = []
+lint.select = [
+    "E",   # Pyflakes
+    "F",   # Pycodestyle
+    "C90", # mccabe
+    "N",   # PEP8命名規則
+    "B",   # Bugbear
+    "I",   # isort
+    "S",   # flake8-bandit
+    "RET", # flake8-return
+    "SIM", # flake8-simplify
+    "T20", # flake8-print
+]
+lint.ignore = ["E203"]
 
 [tool.rye.scripts]
 lint = { chain = ["lint:ruff", "lint:ruff_format", "lint:mypy"] }
@@ -88,3 +92,8 @@ test = { cmd = "pytest -v ./tests --cov=./src --cov-report term-missing --durati
 
 lint_github = { chain = ["lint_github:ruff", "lint:ruff_format", "lint:mypy"] }
 "lint_github:ruff" = "ruff check ./ --diff --output-format=github"
+
+[tool.pytest.ini_options]
+pythonpath = "src"                    # src フォルダをモジュールパスに追加
+testpaths = ["tests"]
+addopts = ["--import-mode=importlib"]
