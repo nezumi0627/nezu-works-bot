@@ -18,6 +18,23 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# ---------- monkeypatch ----------
+_orig_payload_getter = MQTTPacket.payload.fget  # type: ignore[attr-defined]
+
+
+def _safe_payload(self):  # type: ignore[no-self-use]
+    """Wrap original payload getter and ignore validation errors."""
+    try:
+        return _orig_payload_getter(self)  # type: ignore[misc]
+    except ValidationError as exc:  # pragma: no cover
+        logger.warning("Invalid payload skipped: %s", exc)
+        return None
+
+
+# replace property
+MQTTPacket.payload = property(_safe_payload)  # type: ignore[attr-defined]
+# ---------- end monkeypatch ----------
+
 
 def main():
     works_id = os.getenv("WORKS_ID")
@@ -30,7 +47,9 @@ def main():
 
     def receive_publish_packet(w: LineWorks, p: MQTTPacket) -> None:
         try:
-            payload = p.payload
+            payload = p.payload  # may be None if validation failed
+            if payload is None:
+                return
         except (PacketParseException, ValidationError) as exc:
             logger.warning("Skip packet: %s", exc)
             return
