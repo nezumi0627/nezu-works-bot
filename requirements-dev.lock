@@ -30,9 +30,10 @@ pillow==11.1.0
     # via line-works-sdk
 pluggy==1.6.0
     # via pytest
-pydantic==2.10.6
+pydantic==2.11.7
     # via line-works-sdk
-pydantic-core==2.27.2
+    # via nezu-works-bot
+pydantic-core==2.33.2
     # via line-works-sdk
     # via pydantic
 pygments==2.19.2
@@ -49,6 +50,9 @@ typing-extensions==4.12.2
     # via line-works-sdk
     # via pydantic
     # via pydantic-core
+    # via typing-inspection
+typing-inspection==0.4.1
+    # via pydantic
 urllib3==2.3.0
     # via line-works-sdk
     # via requests

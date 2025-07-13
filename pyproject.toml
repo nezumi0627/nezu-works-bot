@@ -6,6 +6,7 @@ authors = [{ name = "nezumi0627" }]
 dependencies = [
     "line-works-sdk>=3.7",
     "pytest>=8.4.1",
+    "pydantic>=2.11.7",
 ]
 readme = "README.md"
 requires-python = ">=3.11.11"
