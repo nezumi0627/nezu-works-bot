@@ -11,6 +11,7 @@ wheels/
 
 #.env
 .env
+.env.example
 
 # session
 /.sessions
