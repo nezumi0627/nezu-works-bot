@@ -16,17 +16,29 @@ certifi==2025.1.31
     # via requests
 charset-normalizer==3.4.1
     # via requests
+colorama==0.4.6
+    # via pytest
 idna==3.10
     # via requests
+iniconfig==2.1.0
+    # via pytest
 line-works-sdk==3.7
     # via nezu-works-bot
+packaging==25.0
+    # via pytest
 pillow==11.1.0
     # via line-works-sdk
+pluggy==1.6.0
+    # via pytest
 pydantic==2.10.6
     # via line-works-sdk
 pydantic-core==2.27.2
     # via line-works-sdk
     # via pydantic
+pygments==2.19.2
+    # via pytest
+pytest==8.4.1
+    # via nezu-works-bot
 python-dateutil==2.9.0.post0
     # via line-works-sdk
 requests==2.32.3
