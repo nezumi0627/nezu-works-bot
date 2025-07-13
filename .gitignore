@@ -8,3 +8,9 @@ wheels/
 
 # venv
 .venv
+
+#.env
+.env
+
+# session
+/.sessions

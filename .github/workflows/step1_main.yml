@@ -1,0 +1,46 @@
+name: Line Works Bot Main
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Run reason"
+        default: "manual"
+        required: false
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    env:
+      WORKS_ID: ${{ secrets.WORKS_ID }}
+      WORKS_PASSWORD: ${{ secrets.WORKS_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.11"
+          architecture: "x64"
+
+      - name: Install project
+        run: pip install -e .
+
+      - name: Update SDK
+        run: python scripts/update_sdk.py
+
+      - name: Update README
+        run: python scripts/update_readme.py
+
+      - name: Run Line Works bot
+        run: python main.py
+
+      - name: Save metrics (placeholder)
+        run: |
+          echo '{"TOTAL_MESSAGES": 0, "TOTAL_COMMANDS": 0}' > stats.json
+
+      - name: Upload artifact (stats)
+        uses: actions/upload-artifact@v4
+        with:
+          name: stats
+          path: stats.json

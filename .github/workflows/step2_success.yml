@@ -1,0 +1,44 @@
+name: Post Process On Success
+
+on:
+  workflow_run:
+    workflows: ["Line Works Bot Main"]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  post-success:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.11"
+
+      - name: Install project
+        run: pip install -e .
+
+      - name: Download stats artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: stats
+
+      - name: Re-check SDK & regenerate README
+        run: |
+          python scripts/update_sdk.py
+          python scripts/update_readme.py
+
+      - name: Commit README and stats if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name  "github-actions[bot]"
+          git add README*.md stats.json || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: post-success auto update"
+            git push
+          fi

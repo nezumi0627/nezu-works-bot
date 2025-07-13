@@ -1,13 +1,13 @@
 [project]
 name = "nezu-works-bot"
 version = "0.1.0"
-description = "Add your description here"
-authors = [
-    { name = "ねずみにうむ", email = "nezumi.dev.0627@gmail.com" }
+description = ""
+authors = [{ name = "nezumi0627" }]
+dependencies = [
+    "line-works-sdk>=3.7",
 ]
-dependencies = []
 readme = "README.md"
-requires-python = ">= 3.8"
+requires-python = ">=3.11.11"
 
 [build-system]
 requires = ["hatchling"]
@@ -17,8 +17,46 @@ build-backend = "hatchling.build"
 managed = true
 dev-dependencies = []
 
+# `rye run` でスクリプトを定義
+[tool.rye.scripts]
+
+lint = { chain = ["lint:ruff", "lint:ruff_format", "lint:mypy" ] }
+"lint:ruff" = "ruff check ./ --diff"
+"lint:ruff_format" = "ruff format --check --diff"
+"lint:mypy" = "mypy ./ --explicit-package-bases"
+
+format = { chain = ["format:ruff", "format:ruff_check"] }
+"format:ruff" = "ruff format ./"
+"format:ruff_check" = "ruff check ./ --fix"
+
 [tool.hatch.metadata]
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/nezu_works_bot"]
+packages = ["nezu-works-bot"]
+
+[tool.mypy]
+plugins = ["mypy_types"]
+
+[tool.ruff]
+line-length = 79       # PEP 8推奨の行長
+indent-width = 4       # インデント幅（標準）
+lint.fixable = ["ALL"] # 自動修正可能なルール
+lint.unfixable = []    # 修正しないルール（全て修正可能）
+lint.select = [
+    "E",    # Pyflakes（エラー検出）
+    "F",    # Pycodestyle（フォーマット）
+    "C90",  # mccabe（循環的複雑度）
+    "N",    # PEP8命名規則
+    "B",    # Bugbear（パイソニックなコード）
+    "I",    # isort（インポート整理）
+    "S",    # flake8-bandit（セキュリティ）
+    "RET",  # flake8-return（return文の一貫性）
+    "SIM",  # flake8-simplify（コード簡素化）
+    "T20",  # flake8-print（print文検出）
+]
+lint.ignore = ["E203"] # 特定の警告を無視
+
+[tool.ruff.format]
+quote-style = "double"
+line-ending = "auto"

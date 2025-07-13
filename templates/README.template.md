@@ -1,7 +1,7 @@
 # nezu-works-bot
 
 ## SDK バージョン
-現在の LINE WORKS SDK バージョン: 3.7
+現在の LINE WORKS SDK バージョン: {{SDK_VERSION}}
 
 こんにちは！私は**ねずわーくす**です :)
 
@@ -9,24 +9,24 @@
 
 ## 統計情報
 
-* **エラー数**: 0
-* **受信したメッセージの総数**: 0
-* **使用されたコマンドの総数**: 0
-* **コマンド使用率**: 0%
+* **エラー数**: {{ERROR_COUNT}}
+* **受信したメッセージの総数**: {{TOTAL_MESSAGES}}
+* **使用されたコマンドの総数**: {{TOTAL_COMMANDS}}
+* **コマンド使用率**: {{COMMAND_USAGE_RATE}}
 
 ### コマンド使用グラフ
 ```mermaid
 %%{init: {'themeVariables': {'pie1': '#e67e73', 'pie2': '#8e44ad', 'pie3': '#2ecc71', 'pie4': '#3498db', 'pie5': '#f1c40f', 'pieTitleText': '#ffffff'}}}%%
 pie
     title コマンド使用状況
-    "test": 0
-    "/msg": 0
-    "/flex": 0
-    "/sticker": 0
-    "/help": 0
+    "test": {{COMMAND_TEST}}
+    "/msg": {{COMMAND_MSG}}
+    "/flex": {{COMMAND_FLEX}}
+    "/sticker": {{COMMAND_STICKER}}
+    "/help": {{COMMAND_HELP}}
 ```
 
 ### ライセンス
 [MITライセンス](LICENSE)
 
-最終更新: 2025-07-13 06:22:22 UTC
+最終更新: {{LAST_UPDATED}}
