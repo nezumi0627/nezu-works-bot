@@ -33,6 +33,21 @@ def _safe_payload(self):  # type: ignore[no-self-use]
 
 # replace property
 MQTTPacket.payload = property(_safe_payload)  # type: ignore[attr-defined]
+
+# also patch unique_id property to return None safely
+if hasattr(MQTTPacket, "unique_id") and isinstance(
+    MQTTPacket.unique_id, property
+):
+    _orig_unique_id_getter = MQTTPacket.unique_id.fget  # type: ignore[attr-defined]
+
+    def _safe_unique_id(self):  # type: ignore[no-self-use]
+        try:
+            return _orig_unique_id_getter(self)  # type: ignore[misc]
+        except AttributeError:
+            return None
+
+    MQTTPacket.unique_id = property(_safe_unique_id)  # type: ignore[attr-defined]
+
 # ---------- end monkeypatch ----------
 
 
