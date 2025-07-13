@@ -1,0 +1,48 @@
+#!/bin/sh
+
+echo "🔍 Running pre-push checks..."
+
+# コミットメッセージの@pre-pushチェック
+echo "📝 Checking @pre-push tag..."
+if ! git log -1 --pretty=%B | grep -q "@pre-push"; then
+    echo "❌ Error: Commit message must include @pre-push tag"
+    exit 1
+fi
+echo "✅ @pre-push tag check passed"
+
+# Lintチェック
+echo "🧹 Running linter checks..."
+
+# フォーマットチェック
+echo "📝 Verifying formatting..."
+if ! ruff format --check --diff; then
+    echo "❌ Format check failed"
+    exit 1
+fi
+echo "✅ Format check passed"
+
+# Lintチェック
+echo "🔍 Running linter..."
+if ! ruff check --diff; then
+    echo "❌ Lint check failed"
+    exit 1
+fi
+echo "✅ Lint check passed"
+
+# 型チェック
+echo "🔍 Running mypy checks..."
+if ! mypy ./src; then
+    echo "❌ Mypy check failed"
+    exit 1
+fi
+echo "✅ Mypy check passed"
+
+# テストチェック
+echo "🧪 Running tests..."
+if ! pytest -v ./tests --cov=./src --cov-report term-missing --durations=5; then
+    echo "❌ Tests failed"
+    exit 1
+fi
+echo "✅ Tests passed"
+
+echo "✅ All checks passed! Ready to push."

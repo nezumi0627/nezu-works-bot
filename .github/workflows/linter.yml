@@ -1,0 +1,42 @@
+name: Run Linters
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - src/**
+      - tests/**
+      - pyproject.toml
+      - requirements-dev.lock
+      - requirements.lock
+      - .github/workflows/linter.yml
+
+jobs:
+  linters:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.11]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Rye
+        run: |
+          curl -sSf https://rye.astral.sh/get | bash
+          echo "$HOME/.rye/shims" >> $GITHUB_PATH
+          source "$HOME/.rye/env"
+
+      - name: Install dependencies
+        run: rye sync
+
+      - name: Run Linters
+        run: rye run lint_github
